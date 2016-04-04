@@ -43,5 +43,5 @@ allow nodejs_t http_cache_port_t:tcp_socket name_bind;
 ```
 Place the allow statements in the nodejs.te file and rerun nodejs.sh. When you are done turn permissive mode off
 ```
-semanage permissive -d httpd_t
+semanage permissive -d nodejs_t
 ```
