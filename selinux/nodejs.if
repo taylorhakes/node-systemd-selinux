@@ -1,0 +1,21 @@
+
+## <summary>policy for nodejs</summary>
+
+########################################
+## <summary>
+##	Execute TEMPLATE in the nodejs domin.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`nodejs_domtrans',`
+	gen_require(`
+		type nodejs_t, nodejs_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	domtrans_pattern($1, nodejs_exec_t, nodejs_t)
+')

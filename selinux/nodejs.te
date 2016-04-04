@@ -1,0 +1,43 @@
+policy_module(nodejs, 1.0.0)
+
+########################################
+#
+# Declarations
+#
+
+type nodejs_t;
+type nodejs_exec_t;
+init_daemon_domain(nodejs_t, nodejs_exec_t)
+
+type nodejs_port_t;
+
+type nodejs_log_t;
+logging_log_file(nodejs_log_t);
+
+########################################
+#
+# nodejs local policy
+#
+
+# allow full manage permissions for log files
+manage_dirs_pattern(nodejs_t, nodejs_log_t, nodejs_log_t)
+manage_files_pattern(nodejs_t, nodejs_log_t, nodejs_log_t)
+logging_log_filetrans(nodejs_t, nodejs_log_t, { file dir });
+
+allow nodejs_t self:fifo_file rw_fifo_file_perms;
+allow nodejs_t self:unix_stream_socket create_stream_socket_perms;
+allow nodejs_t self:tcp_socket { create_stream_socket_perms name_bind };
+allow nodejs_t net_conf_t:file { read getattr open };
+allow nodejs_t httpd_sys_content_t:file { read getattr open };
+allow nodejs_t node_t:tcp_socket node_bind;
+allow nodejs_t ntop_port_t:tcp_socket name_bind;
+allow nodejs_t self:process execmem;
+
+corenet_port(nodejs_port_t)
+allow nodejs_t nodejs_port_t:tcp_socket { name_bind };
+
+domain_use_interactive_fds(nodejs_t)
+
+files_read_etc_files(nodejs_t)
+
+miscfiles_read_localization(nodejs_t)

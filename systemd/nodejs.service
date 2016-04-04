@@ -1,0 +1,12 @@
+[Service]
+ExecStart=/var/www/node/process.js
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=nodejs
+User=nobody
+Group=nobody
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
