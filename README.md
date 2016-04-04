@@ -25,7 +25,7 @@ or
 ```
 systemctl stop nodejs
 ```
-All logs are in /var/log/messages. Check there if you get any errors.
+All logs are in `/var/log/messages`. Check there if you get any errors.
 
 ### Customizing
 In addition to changing file locations, your app may need other permissions. The provided files are just the base. It is recommended that you put SELinux in permissive mode to start
