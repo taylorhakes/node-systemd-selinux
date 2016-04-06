@@ -28,7 +28,7 @@ systemctl stop nodejs
 All logs are in `/var/log/messages`. Check there if you get any errors.
 
 ### Customizing
-In addition to changing file locations, your app may need other permissions. The provided files are just the base. It is recommended that you put SELinux in permissive mode to start
+In addition to changing file locations, your app may need other permissions. The provided files are just the base. It is recommended that you put SELinux in permissive mode to start.
 ```shell
 semanage permissive -a nodejs_t
 ```
@@ -36,12 +36,12 @@ This will allow your app to run, but will log all permission errors to `/var/log
 ```shell
 audit2allow -a | grep node
 ```
-Running that command will output statements like the following
+Running that command will output statements like the following.
 ```
 #============= nodejs_t ==============
 allow nodejs_t http_cache_port_t:tcp_socket name_bind;
 ```
-Place the allow statements in the nodejs.te file and rerun nodejs.sh. When you are done turn permissive mode off
+Place the allow statements in the nodejs.te file and rerun nodejs.sh. When you are done turn permissive mode off.
 ```
 semanage permissive -d nodejs_t
 ```
