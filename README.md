@@ -12,7 +12,7 @@ That file name can be changed via find and replace, but it must be in `/var/www/
 ##### Must use `#!/usr/bin/env node` at the top of JS file and be executable
 DO NOT change the nodejs.service file to execute `node file.js`. The JS needs to be standalone executable.
 ##### The SELinux module assumes that the Node server listens on port 3000
-Read below on how to allow other ports
+Read below on how to allow other ports.
 
 ### How to use
 The SELinux folder has the files to create an SELinux policy for Node. Running the `nodejs.sh` file will build the module and install it on your sytem.
